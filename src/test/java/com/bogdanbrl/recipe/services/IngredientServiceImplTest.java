@@ -8,7 +8,8 @@ import com.bogdanbrl.recipe.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import com.bogdanbrl.recipe.domain.Ingredient;
 import com.bogdanbrl.recipe.domain.Recipe;
 import com.bogdanbrl.recipe.repositories.RecipeRepository;
-import com.bogdanbrl.recipe.repositories.UnitOfMeasureRepository;
+import com.bogdanbrl.recipe.repositories.reactive.RecipeReactiveRepository;
+import com.bogdanbrl.recipe.repositories.reactive.UnitOfMeasureReactiveRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -26,10 +27,13 @@ class IngredientServiceImplTest {
     private final IngredientCommandToIngredient ingredientCommandToIngredient;
 
     @Mock
+    RecipeReactiveRepository recipeReactiveRepository;
+
+    @Mock
     RecipeRepository recipeRepository;
 
     @Mock
-    UnitOfMeasureRepository unitOfMeasureRepository;
+    UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
 
     IngredientService ingredientService;
 
@@ -44,7 +48,7 @@ class IngredientServiceImplTest {
         MockitoAnnotations.initMocks(this);
 
         ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient,
-                recipeRepository, unitOfMeasureRepository);
+                recipeReactiveRepository, recipeRepository, unitOfMeasureReactiveRepository);
     }
 
     @Test
