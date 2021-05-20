@@ -1,29 +1,24 @@
-buildscript {
-    ext {
-        springBootVersion = '2.4.5'
-    }
-    repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'eclipse'
+}
+
+group = 'com.bogdanbrl'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
-
 repositories {
     mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
+//    maven { url "https://repo.spring.io/snapshot" }
+//    maven { url "https://repo.spring.io/milestone" }
 }
 
 
@@ -48,6 +43,10 @@ dependencies {
     testCompile('io.projectreactor:reactor-test')
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
 
+}
+
+test {
+    useJUnitPlatform()
 }
 
 
