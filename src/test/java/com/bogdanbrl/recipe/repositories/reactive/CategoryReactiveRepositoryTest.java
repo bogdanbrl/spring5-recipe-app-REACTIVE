@@ -16,13 +16,7 @@ public class CategoryReactiveRepositoryTest {
 
     @BeforeEach
     public void setUp() {
-        Category category = new Category();
-        category.setDescription("foo");
-
-        categoryReactiveRepository.save(category).block();
-
-        Long count = categoryReactiveRepository.count().block();
-        assertEquals(Long.valueOf(1l), count);
+        categoryReactiveRepository.deleteAll().block();
     }
 
     @Test

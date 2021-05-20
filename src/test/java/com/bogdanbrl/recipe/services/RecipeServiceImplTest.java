@@ -8,7 +8,6 @@ import com.bogdanbrl.recipe.exceptions.NotFoundException;
 import com.bogdanbrl.recipe.repositories.RecipeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,11 +15,10 @@ import org.mockito.MockitoAnnotations;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 public class RecipeServiceImplTest {
 
@@ -52,7 +50,7 @@ public class RecipeServiceImplTest {
 
         Recipe recipeReturned = recipeService.findById("1");
 
-        assertNotNull("Null recipe returned", (Supplier<String>) recipeReturned);
+        assertNotNull("Null recipe returned", recipeReturned);
         verify(recipeRepository, times(1)).findById(anyString());
         verify(recipeRepository, never()).findAll();
     }
@@ -86,7 +84,7 @@ public class RecipeServiceImplTest {
 
         RecipeCommand commandById = recipeService.findCommandById("1");
 
-        assertNotNull("Null recipe returned", (Supplier<String>) commandById);
+        assertNotNull("Null recipe returned", commandById);
         verify(recipeRepository, times(1)).findById(anyString());
         verify(recipeRepository, never()).findAll();
     }
